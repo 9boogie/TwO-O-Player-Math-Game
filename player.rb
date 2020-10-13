@@ -22,11 +22,9 @@ class Player
   
     if text == @questions.values[random_num]
       puts "Yes! You are correct!"
-      puts "P1: #{@player_life}/3 vs P2: #{@player_life}/3"
     else 
       puts "Seriously?? No!!"
       @player_life -= 1
-      puts "P1: #{@player_life}/3 vs P2: #{@player_life}/3"
     end
   end
 

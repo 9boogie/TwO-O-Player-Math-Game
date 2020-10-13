@@ -7,8 +7,37 @@ class Game
   end
 
   def start
-    puts "#{@player1.name} vs #{@player2.name}"
-    puts "#{@player1.player_life} vs #{@player2.player_life}"
+    while @player1.player_life > 0 && @player2.player_life > 0 do
+
+      @player1.play
+      puts "P1: #{@player1.player_life}/3 vs P2: #{@player2.player_life}/3"
+    
+      if @player1.player_life == 0
+        break
+      end
+    
+      puts "----- NEW TURN -----"
+    
+      @player2.play
+      puts "P1: #{@player1.player_life}/3 vs P2: #{@player2.player_life}/3"
+    
+      if @player2.player_life == 0
+        break
+      end
+    
+      puts "----- NEW TURN -----"
+    
+    end
+    
+    if @player1.player_life > @player2.player_life
+      puts "Player 1 wins with a score of #{@player1.player_life}/3"
+    else
+      puts "Player 2 wins with a score of #{@player2.player_life}/3"
+    end
+    
+    puts "----- GAME OVER -----"
+    puts "Good bye!"
+
   end
 
 
