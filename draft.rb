@@ -6,6 +6,11 @@
   'What does 101 minus 100 equal?' => '1'
 }
 
+@player1_life = 3
+@player2_life = 3
+@sequence = 0
+
+
 def player1
   random_num = rand(0...4)
 
@@ -14,8 +19,11 @@ def player1
 
   if text1 == @questions.values[random_num]
     puts "Yes! You are correct!"
+    puts "P1: #{@player1_life}/3 vs P2: #{@player2_life}/3"
   else 
     puts "Seriously?? No!!"
+    @player1_life -= 1
+    puts "P1: #{@player1_life}/3 vs P2: #{@player2_life}/3"
   end
 end
 
@@ -27,28 +35,38 @@ def player2
 
   if text1 == @questions.values[random_num]
     puts "Yes! You are correct!"
+    puts "P1: #{@player1_life}/3 vs P2: #{@player2_life}/3"
   else 
     puts "Seriously?? No!!"
+    @player2_life -= 1
+    puts "P1: #{@player1_life}/3 vs P2: #{@player2_life}/3"
   end
 end
 
-player1
+while @player1_life > 0 && @player2_life > 0 do
+  player1
 
-player2
+  if @player1_life == 0
+    break
+  end
 
-=begin
-puts "Player 1: #{questions.keys[0]}"
-text1 = gets.chomp
+  puts "----- NEW TURN -----"
 
-if text1 == '8'
-  puts "Yes! You are correct!"
-else 
-  puts "Seriously?? No!!"
+  player2
+
+  if @player2_life == 0
+    break
+  end
+
+  puts "----- NEW TURN -----"
+
 end
 
-puts "----- NEW TURN -----"
+if @player1_life > @player2_life
+  puts "Player 1 wins with a score of #{@player1_life}/3"
+else
+  puts "Player 2 wins with a score of #{@player2_life}/3"
+end
 
-#puts "Enter second text:"
-#text2 = gets.chomp
-#puts text2
-=end
+puts "----- GAME OVER -----"
+puts "Good bye!"
